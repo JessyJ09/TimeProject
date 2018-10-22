@@ -1,0 +1,7 @@
+<%= render "publications/header"%>
+<h1> Connexion </h1>
+<%= form_tag "/users/login", method: :post do %>
+	<input type="text", name="user[name]", placeholder="Pseudo" />
+	<input type="password", name="user[password]", placeholder="Mot de passe" />
+	<input type="submit", value="Se connecter" />
+<%end%>

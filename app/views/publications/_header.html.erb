@@ -1,0 +1,25 @@
+<div id="header"> 
+	<div id="time">
+		<h1><a href="/publications/index">TIME</a> </h1>
+	</div>
+	<div id="connect">
+		<%if session[:user_id] != nil %>
+			<p>Bonjour <%=@current_user.name%></p>
+			<a href="/publications/create">Créer un time</a>
+			<%= form_tag "/publications/header", method: :delete do%>
+				<input type="submit" value="Deconnexion" />
+			<%end%>
+		<%else%>
+			
+			<a href="/users/login">Se connecter</a>
+			<p>-</p>
+			<a href="/users/new">S'inscrire</a>
+		<%end%>
+	</div>
+
+</div>
+<div id="filter">
+	<a href="/publications/hier"><div id="filtera">Hier</div></a>
+<a href="/publications/aujourdhui"><div id="filtera">Aujourd'hui</div></a>
+<a href="/publications/demain"><div id="filtera">Demain</div></a>
+</div>

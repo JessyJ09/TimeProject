@@ -1,0 +1,34 @@
+<%= render "publications/header" %>
+<div id="public">
+<h1><%=@publication.title%></h1>
+<p><%=@publication.content%></p></div>
+<%@commentaires.each do |comment| %>
+
+	<div id="<%=comment.position%>">
+		<%auteur = User.find(comment.user_id)%>
+			<%=auteur.name%> : <%= comment.content %>
+			<% if auteur.name == @current_user.try(:name)%>
+			<div id="supp">
+		<%= form_tag "/publications/#{@publication.id}/commentaires/#{comment.id}", method: :delete do %>
+			<input type="submit", value="supprimer" />
+		<%end%></div><%end%>
+	</div>
+<%end%>
+	
+
+<% if @current_user %><div id="postComment">
+<%= form_tag "/publications/#{@publication.id}", method: :post do %>
+	<input type="text", name="commentaire[content]", placeholder="Votre commentaire"/>
+	</br></div><div id="Pour">
+	<label for="pour">POUR<input type="radio", name="commentaire[position]", value="pour", id="pour"/>
+	</label></div>
+	<div id="Mitigé">
+	<label for="mitige">MITIGÉ<input checked type="radio", name="commentaire[position]", value="mitige", id="mitige"/>
+	</label></div>
+	<div id="Contre">
+	<label for"contre">CONTRE<input type="radio", name="commentaire[position]", value="contre", id="contre"/>
+	</label></div>
+	</br>
+	<input type="submit", value="Commenter" />
+<%end%>
+	<%end%>

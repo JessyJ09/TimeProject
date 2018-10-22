@@ -1,0 +1,9 @@
+<% if @publications %>
+	<% @publications.each do |publication| %>
+		<div id="public"> <a href="/publications/<%=publication.id%>">
+				<% sujet = Subject.find(publication.subject_id)%>	<h1><%=publication.title%></h1>
+				<p><%= sujet.name%>	/<% category = Category.find(sujet.category_id)%><%=category.category%> </p>
+				<p><%=publication.commentaires.size %> Commentaires / Publié <%= publication.created_at.strftime("%A") %> à <%= publication.created_at.strftime("%H:%M:%S")%></p>
+			</a></div>
+<%end%>
+	<%end%>

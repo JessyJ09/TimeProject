@@ -1,0 +1,30 @@
+<%= render "publications/header" %>
+
+<h1>Ajouter un times </h1>
+<%= form_tag "/publications/create", method: :post do %>
+	<div>
+		<input type="radio", name="category_id", value="1" id="Hier"/>
+<label for="Hier">Hier</label>
+	</div>
+	<div>
+		<input type="radio", name="category_id", value="2", id="Aujourd'hui"/>
+<label for="Aujourd'hui">Aujourd'hui</label>
+	</div>
+	<div>
+		<input type="radio", name="category_id", value="3>", id="Demain" />
+<label for="Demain">Demain</label>
+	</div>
+
+	<div>
+		<input type="text", name="subject[name]", placeholder="Sujet" />
+	</div>
+	<div>
+		<input type="text", name="publication[title]", placeholder="Titre" />
+	</div>
+	<div>
+		<input type="text", name="publication[content]", placeholder="Votre Time" />
+	</div>
+	<div>
+		<input type="submit", value="Publier" />
+	</div>
+<%end%>
