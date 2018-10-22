@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20181013125314) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: :cascade do |t|
     t.string "category"
     t.datetime "created_at", null: false
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20181013125314) do
 
   create_table "commentaires", force: :cascade do |t|
     t.string "content"
-    t.integer "user_id"
-    t.integer "publication_id"
+    t.bigint "user_id"
+    t.bigint "publication_id"
     t.string "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,8 +35,8 @@ ActiveRecord::Schema.define(version: 20181013125314) do
   create_table "publications", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.integer "subject_id"
-    t.integer "user_id"
+    t.bigint "subject_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_publications_on_subject_id"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 20181013125314) do
 
   create_table "subjects", force: :cascade do |t|
     t.string "name"
-    t.integer "category_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_subjects_on_category_id"
@@ -55,4 +58,9 @@ ActiveRecord::Schema.define(version: 20181013125314) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "commentaires", "publications"
+  add_foreign_key "commentaires", "users"
+  add_foreign_key "publications", "subjects"
+  add_foreign_key "publications", "users"
+  add_foreign_key "subjects", "categories"
 end
