@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 	get 'publications/index' => 'publications#index'
 	delete 'publications/header' => 'users#logout'
 
+	get 'categories/create' => 'categories#create'
+post 'categories/create' => 'categories#new'
   get 'publications/create' => 'publications#create'
   post 'publications/create' => 'publications#new'
 	

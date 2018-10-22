@@ -1,0 +1,5 @@
+<%= render "/publications/header" %>
+<%= form_tag "/categories/create", method: :post do %>
+	<input type="text", name="category" />
+	<input type="submit", value="ajouter"/>
+<%end%>
